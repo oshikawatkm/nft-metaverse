@@ -17,8 +17,8 @@ import { User } from './users/user.entity';
 import { ModelConverter } from './model_converters/model_converter.entity';
 import { Order } from './orders/order.entity';
 import { NftModel } from './nft_models/nft_model.entity';
-import { UserOrder } from './users_orders/user_order.entity';
-import { OrderModelConverter } from './orders_model_converters/orders_model_converters.entity';
+import { UserOrder } from './user-orders/user-order.entity';
+import { OrderModelConverter } from './order-model_converters/order-model_converter.entity';
 
 
 @Module({
