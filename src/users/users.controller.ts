@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 import { ApiTags } from '@nestjs/swagger';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @ApiTags('model_converters')
 @Controller('model_converters')
@@ -27,5 +28,10 @@ export class UsersController {
   findOne(@Param('id', ParseIntPipe) id: number): Promise<User> {
     return this.usersService.findOne(id);
   }
-  
+
+  @Post()
+  login(@Body() loginUserDto: LoginUserDto) {
+    this.usersService.login(loginUserDto);
+  }
+
 }

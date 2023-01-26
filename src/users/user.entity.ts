@@ -1,5 +1,6 @@
 import { CreateDateColumn, UpdateDateColumn, Entity, Column, PrimaryGeneratedColumn, Generated, Unique, OneToMany } from 'typeorm';
 import { IsEmail, IsInt,  MaxLength } from "class-validator";
+import { UserOrder } from 'src/user-orders/user-order.entity';
 
 @Entity("users")
 @Unique(['email'])
@@ -20,10 +21,7 @@ export class User {
   did: string;
 
   @Column()
-  password: string;
-
-//   @OneToMany(() => DidInfo, did=>did.user)
-//   didInfos?:DidInfo[]
+  password: string;  // PoCなので生で保存
   
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   readonly createdAt: Date;

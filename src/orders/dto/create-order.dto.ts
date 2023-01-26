@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateModelConverterDto {
+export class CreateOrderDto {
 
   @IsNotEmpty()
   readonly tokenId: number;

@@ -12,5 +12,5 @@ export class CreateUserDto {
   readonly did: string;
 
   @IsNotEmpty()
-  readonly password: string; // PoCなので生で保存
+  readonly password: string;
 }

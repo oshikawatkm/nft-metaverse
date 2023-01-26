@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
+import { LoginUserDto } from './dto/login-user.dto';
 
 
 @Injectable()
@@ -29,5 +30,12 @@ export class UsersService {
     
       findOne(id: number): Promise<User> {
         return this.usersRepository.findOneBy({ id });
+      }
+
+      // PoCなので簡易的な認証
+      async login(loginUserDto: LoginUserDto): Promise<Boolean> {
+        let user: LoginUserDto = await this.usersRepository.findOneBy({ email: loginUserDto.email });
+        let result = user.password == loginUserDto.password ? true : false;
+        return result;
       }
 }
