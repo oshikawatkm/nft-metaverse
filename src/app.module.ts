@@ -1,13 +1,66 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { NftModelController } from './nft_model/nft_model.controller';
-import { NftModelService } from './nft_model/nft_model.service';
-import { NftModelModule } from './nft_model/nft_model.module';
+import { NftModelsController } from './nft_models/nft_models.controller';
+import { UsersController } from './users/users.controller';
+import { ModelConvertersController } from './model_converters/model_converters.controller';
+import { OrdersController } from './orders/orders.controller';
+import { NftModelsService } from './nft_models/nft_models.service';
+import { NftModelsModule } from './nft_models/nft_models.module';
+import { UsersService } from './users/users.service';
+import { ModelConvertersService } from './model_converters/model_converters.service';
+import { OrdersService } from './orders/orders.service';
+
+import { User } from './users/user.entity';
+import { ModelConverter } from './model_converters/model_converter.entity';
+import { Order } from './orders/order.entity';
+import { NftModel } from './nft_models/nft_model.entity';
+import { UserOrder } from './users_orders/user_order.entity';
+import { OrderModelConverter } from './orders_model_converters/orders_model_converters.entity';
+
 
 @Module({
-  imports: [NftModelModule],
-  controllers: [AppController, NftModelController],
-  providers: [AppService, NftModelService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'root',
+      database: 'test',
+      entities: [
+        User,
+        ModelConverter,
+        NftModel,
+        Order,
+        UserOrder,
+        OrderModelConverter
+      ]
+    }),
+    TypeOrmModule.forFeature([
+      User,
+      ModelConverter,
+      NftModel,
+      Order,
+      UserOrder,
+      OrderModelConverter
+    ]),
+  ],
+  controllers: [
+    AppController, 
+    NftModelsController,
+    UsersController,
+    ModelConvertersController,
+    OrdersController,
+  ],
+  providers: [
+    AppService, 
+    NftModelsService,
+    UsersService,
+    ModelConvertersService,
+    OrdersService
+  ],
 })
 export class AppModule {}
