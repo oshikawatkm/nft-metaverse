@@ -20,10 +20,13 @@ export class ModelConverter {
   did: string;
 
   @Column()
-  password: string;
+  password: string; // PoCなので生で保存
 
-//   @OneToMany(() => DidInfo, did=>did.user)
-//   didInfos?:DidInfo[]
+  @Column()
+  publicKey: string;
+
+  @Column()
+  privateKey: string;  // PoCなので生で保存
   
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   readonly createdAt: Date;

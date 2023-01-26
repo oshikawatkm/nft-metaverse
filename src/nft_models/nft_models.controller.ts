@@ -1,6 +1,6 @@
 import { Body, Version, Param, Controller, Get, Post, Delete, UseGuards, ParseIntPipe } from '@nestjs/common';
 import { NftModelsService } from './nft_models.service';
-import { EtherService } from '../ether/ether.service'
+import { EthersService } from '../ethers/ethers.service'
 import { CreateNftModelDto } from './dto/create-nft_model.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { NftModel } from './nft_model.entity';
@@ -11,7 +11,7 @@ export class NftModelsController {
 
   constructor(
     private readonly nftModelsService: NftModelsService,
-    private readonly etherService: EtherService,
+    private readonly ethersService: EthersService,
   ) {}
 
   @Get()
@@ -23,7 +23,7 @@ export class NftModelsController {
   @Post()
   async create(@Body() createNftModelDto: CreateNftModelDto) {
     this.nftModelsService.create(createNftModelDto);
-    await this.etherService.mint();
+    await this.ethersService.mint();
   }
 
   @Get(':id')

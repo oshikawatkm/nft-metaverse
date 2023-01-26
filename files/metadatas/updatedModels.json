@@ -1,0 +1,46 @@
+{
+    "title": "NFT Metaverse",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Avatar1"
+        },
+        "creator": {
+            "type": "string",
+            "description": "did:ether:goeli:123456789"
+        },
+        "description": {
+            "type": "string",
+            "description": "Test Avatar"
+        },
+        "format": {
+            "type": "string",
+            "description": ".3ds"
+        },
+        "copyright": {
+            "type": "string",
+            "description": [ "FREE" ]
+        },
+        "model": {
+            "type": "string",
+            "description": "../model.txt"
+        }
+    },
+    "updated": [
+        {
+            "converter": {
+                "type": "string",
+                "description": "did:ether:goeli:098765432"
+            },
+            "format": {
+                "type": "string",
+                "description": ".ma"
+            },
+            "model": {
+                "type": "string",
+                "description": "../converted_model.txt"
+            }
+        }
+    ]
+}

@@ -14,12 +14,14 @@ export class UsersService {
         private usersRepository: Repository<User>,
       ) {}
     
-      create(createUserDto: CreateUserDto): Promise<User> {
+      create(createUserDto: CreateUserDto, pubKey: string, privateKey: string): Promise<User> {
         const user = new User();
         user.name = createUserDto.name;
         user.email = createUserDto.email;
         user.did = createUserDto.did;
         user.password = createUserDto.password;
+        user.publicKey = pubKey;
+        user.privateKey = privateKey;
     
         return this.usersRepository.save(user);
       }

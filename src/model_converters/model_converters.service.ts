@@ -13,14 +13,16 @@ export class ModelConvertersService {
         private modelConvertersRepository: Repository<ModelConverter>,
       ) {}
     
-      create(createModelConverterDto: CreateModelConverterDto): Promise<ModelConverter> {
-        const user = new ModelConverter();
-        user.name = createModelConverterDto.name;
-        user.email = createModelConverterDto.email;
-        user.did = createModelConverterDto.did;
-        user.password = createModelConverterDto.password;
+      create(createModelConverterDto: CreateModelConverterDto, pubkey: string, privateKey): Promise<ModelConverter> {
+        const modelConverter = new ModelConverter();
+        modelConverter.name = createModelConverterDto.name;
+        modelConverter.email = createModelConverterDto.email;
+        modelConverter.did = createModelConverterDto.did;
+        modelConverter.password = createModelConverterDto.password;
+        modelConverter.publicKey = pubkey;
+        modelConverter.privateKey = privateKey;
     
-        return this.modelConvertersRepository.save(user);
+        return this.modelConvertersRepository.save(modelConverter);
       }
     
       async findAll(): Promise<ModelConverter[]> {

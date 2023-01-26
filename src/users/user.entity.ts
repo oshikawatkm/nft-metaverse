@@ -22,6 +22,12 @@ export class User {
 
   @Column()
   password: string;  // PoCなので生で保存
+
+  @Column()
+  publicKey: string;
+
+  @Column()
+  privateKey: string;  // PoCなので生で保存
   
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   readonly createdAt: Date;
