@@ -6,8 +6,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { LoginUserDto } from './dto/login-user.dto';
 import { EthersService } from '../ethers/ethers.service'
 
-@ApiTags('model_converters')
-@Controller('model_converters')
+@ApiTags('users')
+@Controller('users')
 export class UsersController {
 
   constructor(
@@ -32,7 +32,7 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @Post()
+  @Post("login")
   login(@Body() loginUserDto: LoginUserDto) {
     this.usersService.login(loginUserDto);
   }

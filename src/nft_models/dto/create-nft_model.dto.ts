@@ -2,8 +2,8 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateNftModelDto {
 
-  @IsNotEmpty()
-  readonly filename: string;
+  // @IsNotEmpty()
+  // readonly filename: string;
 
   @IsNotEmpty()
   readonly name: string;

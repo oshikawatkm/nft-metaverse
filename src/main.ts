@@ -12,7 +12,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('nft-model')
     .addTag('users')
-    .addTag('model_comverters')
+    .addTag('model_converters')
     .build();
 
   app.enableVersioning({

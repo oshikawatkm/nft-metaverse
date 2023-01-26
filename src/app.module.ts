@@ -42,7 +42,8 @@ import { OrderModelConvertersModule } from './order-model_converters/order-model
         Order,
         UserOrder,
         OrderModelConverter
-      ]
+      ],
+      synchronize: true,
     }),
     TypeOrmModule.forFeature([
       User,

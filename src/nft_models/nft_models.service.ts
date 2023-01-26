@@ -14,10 +14,10 @@ export class NftModelsService {
       create(createNftModelDto: CreateNftModelDto): Promise<NftModel> {
         const nftModel = new NftModel();
         nftModel.name = createNftModelDto.name;
-        nftModel.filename = createNftModelDto.filename;
         nftModel.copyright = createNftModelDto.copyright;
         nftModel.modelFormat = createNftModelDto.modelFormat;
         nftModel.description = createNftModelDto.description;
+        nftModel.filename = "nft3dmodel" + Date.now();
     
         return this.nftModelRepository.save(nftModel);
       }
