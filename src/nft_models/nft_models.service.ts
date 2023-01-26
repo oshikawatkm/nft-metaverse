@@ -7,7 +7,7 @@ import { NftModel } from './nft_model.entity';
 @Injectable()
 export class NftModelsService {
     constructor(
-        @InjectRepository(CreateNftModelDto)
+        @InjectRepository(NftModel)
         private nftModelRepository: Repository<NftModel>,
       ) {}
     
