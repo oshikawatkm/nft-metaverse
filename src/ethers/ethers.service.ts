@@ -4,10 +4,14 @@ import { jsonManager } from '../utils/jsonGenerator';
 
 @Injectable()
 export class EthersService {
-
-    constructor(
-
-      ) {}
+    private readonly infuraProvider: ethers.providers.InfuraProvider;
+    
+    constructor() {
+      this.infuraProvider =  new ethers.providers.InfuraProvider("goeli", {
+        projectId: process.env.INFURA_PROJECT_ID,
+        projectSecret: process.env.INFURA_API_KEY
+      });
+    }
 
       async generateKeyPair(): Promise<[string, string]> {
         const wallet = ethers.Wallet.createRandom()
