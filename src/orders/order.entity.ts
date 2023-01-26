@@ -13,7 +13,7 @@ export class Order {
 
   @Column()
   @IsInt()
-  status: number; // 1. Uncommissioned 2. Commissioned 3.completed
+  status: number; // 1. Uncommissioned, 2. Commissioned, 3. Completed
   
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   readonly createdAt: Date;
