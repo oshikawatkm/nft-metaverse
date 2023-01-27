@@ -1,0 +1,14 @@
+{
+    "converter": {
+        "type": "string",
+        "description": ""
+    },
+    "format": {
+        "type": "string",
+        "description": ""
+    },
+    "model": {
+        "type": "string",
+        "description": ""
+    }
+}

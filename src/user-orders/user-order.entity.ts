@@ -1,4 +1,4 @@
-import { CreateDateColumn, UpdateDateColumn, Entity, Column, PrimaryColumn, JoinColumn, ManyToOne, Unique } from "typeorm";
+import { CreateDateColumn, UpdateDateColumn, Entity, PrimaryColumn, JoinColumn, ManyToOne, Unique } from "typeorm";
 import { User } from "../users/user.entity";
 import { Order } from "../orders/order.entity";
 

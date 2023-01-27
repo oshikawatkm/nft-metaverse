@@ -3,6 +3,7 @@ import { CreateNftModelDto } from './dto/create-nft_model.dto'
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NftModel } from './nft_model.entity';
+import { User } from 'src/users/user.entity';
 
 @Injectable()
 export class NftModelsService {
@@ -11,13 +12,14 @@ export class NftModelsService {
         private nftModelRepository: Repository<NftModel>,
       ) {}
     
-      create(createNftModelDto: CreateNftModelDto): Promise<NftModel> {
+      create(createNftModelDto: CreateNftModelDto, tokenId: number, filename: string, user: User): Promise<NftModel> {
         const nftModel = new NftModel();
         nftModel.name = createNftModelDto.name;
         nftModel.copyright = createNftModelDto.copyright;
-        nftModel.modelFormat = createNftModelDto.modelFormat;
+        nftModel.format = createNftModelDto.format;
         nftModel.description = createNftModelDto.description;
-        nftModel.filename = "nft3dmodel" + Date.now();
+        nftModel.filename = filename;
+        nftModel.user = user;
     
         return this.nftModelRepository.save(nftModel);
       }

@@ -4,23 +4,27 @@
     "properties": {
         "name": {
             "type": "string",
-            "description": "Avatar1"
+            "description": ""
+        },
+        "creator": {
+            "type": "string",
+            "description": ""
         },
         "description": {
             "type": "string",
-            "description": "Test Avatar"
+            "description": ""
         },
         "format": {
             "type": "string",
-            "description": ".3ds"
+            "description": ""
         },
         "copyright": {
             "type": "string",
-            "description": "FREE"
+            "description": ""
         },
         "model": {
             "type": "string",
-            "description": "../model.txt"
+            "description": ""
         }
     },
     "updated": []

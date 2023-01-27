@@ -1,0 +1,31 @@
+{
+	"title": "NFT Metaverse",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "sample"
+		},
+		"creator": {
+			"type": "string",
+			"description": "creator1"
+		},
+		"description": {
+			"type": "string",
+			"description": "this is file"
+		},
+		"format": {
+			"type": "string",
+			"description": ".txt"
+		},
+		"copyright": {
+			"type": "string",
+			"description": "FREE"
+		},
+		"model": {
+			"type": "string",
+			"description": "https://hoge"
+		}
+	},
+	"updated": []
+}
