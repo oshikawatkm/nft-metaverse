@@ -9,10 +9,10 @@ export class JsonManager {
     private readonly metadataUpdatedTemplateWithSignFilePath: string;
 
     constructor() {
-        this.baseMetadataFilePath = "/files/metadatas/"
-        this.metadataTemplateFilePath = "../../files/templates/template.json";
-        this.metadataUpdatedTemplateFilePath = "../../files/templates/templateUpdated.json";
-        this.metadataUpdatedTemplateWithSignFilePath = "../../files/templates/templateUpdatedWithSign.json";
+        this.baseMetadataFilePath = path.join(process.env.APP_DIR_PATH + "/files/metadatas/");
+        this.metadataTemplateFilePath = path.join(process.env.APP_DIR_PATH + "/files/templates/template.json");
+        this.metadataUpdatedTemplateFilePath = path.join(process.env.APP_DIR_PATH + "/files/templates/templateUpdated.json");
+        this.metadataUpdatedTemplateWithSignFilePath = path.join(process.env.APP_DIR_PATH + "/files/templates/templateUpdatedWithSign.json");
     }
 
     public async generateJson(
@@ -33,7 +33,7 @@ export class JsonManager {
         readJson.properties.description.description = description;
         readJson.properties.format.description = format;
         readJson.properties.copyright.description = copyright;
-        readJson.properties.model.description = modelPath;
+        readJson.properties.model.description = this.baseMetadataFilePath + modelPath + format;
 
         let filename = `metadata-${Date.now()}.json`;
         await this._writeFileJson(readJson, filename)
@@ -50,7 +50,7 @@ export class JsonManager {
 
             updateTemplate.converter.description = converter;
             updateTemplate.format.description = format;
-            updateTemplate.model.description = model;
+            updateTemplate.model.description = this.baseMetadataFilePath + model + format;
 
             newJson = oldJson.updated.append(updateTemplate)
         } else {
@@ -72,7 +72,7 @@ export class JsonManager {
     private async _readFileJson(templateFilePath: string) {
         try {
             let readJsonString = await fs.readFile(
-                path.resolve(__dirname, templateFilePath), "utf8");
+                path.resolve(templateFilePath), "utf8");
             return JSON.parse(readJsonString);
         } catch(err: unknown) {
             console.error(err)
@@ -84,8 +84,8 @@ export class JsonManager {
         try {
             await fs.writeFile(
                 path.resolve(
-                    __dirname, 
-                    `../files/metadatas/${filename}`
+                    this.baseMetadataFilePath, 
+                    `./${filename}`
                 ), 
                 JSON.stringify(jsonData, null, "\t")
             );

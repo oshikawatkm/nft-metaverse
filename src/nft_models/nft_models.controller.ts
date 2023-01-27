@@ -31,7 +31,7 @@ export class NftModelsController {
       properties: {
         name: { type: 'string' },
         copyright: { type: 'string' },
-        modelFormat: { type: 'string' },
+        format: { type: 'string' },
         description: { type: 'string' },
         file: {
           type: 'string',
@@ -43,16 +43,16 @@ export class NftModelsController {
   @UseInterceptors(FileInterceptor('file'))
   async create(@UploadedFile() file: Express.Multer.File, @Body() createNftModelDto: CreateNftModelDto) {
     try {
-      let modelPath; // file
+      let modelFileName = file.filename;
+      let user = await this.usersService.findOne(1)
       let [tokenId, metadataFile] = await this.ethersService.mint(
           createNftModelDto.name, 
-          createNftModelDto.creator,
           createNftModelDto.description,
           createNftModelDto.format,
           createNftModelDto.copyright,
-          modelPath
+          user.did,
+          modelFileName
         );
-      let user = await this.usersService.findOne(1)
       await this.nftModelsService.create(createNftModelDto, tokenId, metadataFile, user);
       return true;
     } catch(err: unknown) {

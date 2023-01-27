@@ -14,6 +14,7 @@ export class NftModelsService {
     
       create(createNftModelDto: CreateNftModelDto, tokenId: number, filename: string, user: User): Promise<NftModel> {
         const nftModel = new NftModel();
+        nftModel.tokenId = tokenId;
         nftModel.name = createNftModelDto.name;
         nftModel.copyright = createNftModelDto.copyright;
         nftModel.format = createNftModelDto.format;

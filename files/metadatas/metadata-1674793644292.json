@@ -1,0 +1,30 @@
+{
+	"title": "NFT Metaverse",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "test"
+		},
+		"creator": {
+			"type": "string"
+		},
+		"description": {
+			"type": "string",
+			"description": "hoge"
+		},
+		"format": {
+			"type": "string",
+			"description": ".txt"
+		},
+		"copyright": {
+			"type": "string",
+			"description": "hoge"
+		},
+		"model": {
+			"type": "string",
+			"description": "/home/oshikawa/nft-metaverse/files/metadatas/3d5e364f5aeaf9a93b4032326135d3dc.txt"
+		}
+	},
+	"updated": []
+}

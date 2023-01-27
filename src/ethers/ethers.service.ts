@@ -24,16 +24,16 @@ export class EthersService {
     
       async mint(
         name: string,
-        creator: string,
         description: string,
         format: string,
         copyright: string,
+        creator: string,
         modelPath: string,
       ): Promise<[number, string]> {
         let metadataFilePath = await this._jsonManager.generateJson(
           name, creator, description, format, copyright, modelPath
         );
-        let tokenId; // ether.contract.mint
+        let tokenId = 1; // ether.contract.mint
         return [tokenId, metadataFilePath];
       }
 

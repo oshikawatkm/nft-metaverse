@@ -18,7 +18,7 @@ export class UsersService {
         const user = new User();
         user.name = createUserDto.name;
         user.email = createUserDto.email;
-        user.did = createUserDto.did;
+        user.did = `${"did:ether:goerli:" + pubKey}`;
         user.password = createUserDto.password;
         user.publicKey = pubKey;
         user.privateKey = privateKey;

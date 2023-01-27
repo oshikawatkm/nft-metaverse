@@ -9,8 +9,5 @@ export class CreateModelConverterDto {
   readonly email: string;
 
   @IsNotEmpty()
-  readonly did: string;
-
-  @IsNotEmpty()
   readonly password: string; // PoCなので生で保存
 }

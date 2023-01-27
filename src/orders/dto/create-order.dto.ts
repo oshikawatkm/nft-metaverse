@@ -7,4 +7,7 @@ export class CreateOrderDto {
 
   @IsNotEmpty()
   readonly reward_wei: number;
+
+  @IsNotEmpty()
+  readonly format: string;
 }

@@ -16,6 +16,9 @@ export class Order {
   tokenId: number;
 
   @Column()
+  format: string;
+
+  @Column()
   @IsInt()
   status: number; // 1. Uncommissioned, 2. Commissioned, 3. Completed
   

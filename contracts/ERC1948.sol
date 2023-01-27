@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 import "./IERC1948.sol";
 import "./ERC721.sol";
 
-contract ERC1948 is IERC1948, GameItem {
+contract ERC1948 is IERC1948, MetaverseModel {
 
   mapping(uint256 => bytes32) data;
 

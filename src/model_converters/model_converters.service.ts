@@ -17,7 +17,7 @@ export class ModelConvertersService {
         const modelConverter = new ModelConverter();
         modelConverter.name = createModelConverterDto.name;
         modelConverter.email = createModelConverterDto.email;
-        modelConverter.did = createModelConverterDto.did;
+        modelConverter.did = `${"did:ether:goerli:" + pubkey}`,
         modelConverter.password = createModelConverterDto.password;
         modelConverter.publicKey = pubkey;
         modelConverter.privateKey = privateKey;

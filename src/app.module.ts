@@ -25,7 +25,6 @@ import { OrdersModule } from './orders/orders.module';
 import { UserOrdersModule } from './user-orders/user-orders.module';
 import { OrderModelConvertersModule } from './order-model_converters/order-model_converters.module';
 
-
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -53,7 +52,7 @@ import { OrderModelConvertersModule } from './order-model_converters/order-model
       UserOrder,
       OrderModelConverter
     ]),
-    ConfigModule.forRoot({ ignoreEnvFile: true }),
+    ConfigModule.forRoot({ envFilePath: ['.env'] }),
     UsersModule,
     ModelsConvertersModule,
     NftModelsModule,

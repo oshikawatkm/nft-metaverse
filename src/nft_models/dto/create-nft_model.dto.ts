@@ -12,9 +12,6 @@ export class CreateNftModelDto {
   readonly copyright: string;
 
   @IsNotEmpty()
-  readonly creator: string;
-
-  @IsNotEmpty()
   readonly format: string;
 
   @IsNotEmpty()
