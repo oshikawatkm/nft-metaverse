@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MulterModule } from '@nestjs/platform-express';
 import { UsersModule } from '../users/users.module';
 import { ModelsConvertersModule } from '../model_converters/model_converters.module';
+import { EthersModule } from '../ethers/ethers.module';
 
 @Module({
     imports: [
@@ -13,6 +14,7 @@ import { ModelsConvertersModule } from '../model_converters/model_converters.mod
         MulterModule.register({ dest: './files/models' }),
         UsersModule,
         ModelsConvertersModule,
+        EthersModule
     ],
     providers: [OrdersService],
     exports: [OrdersService],

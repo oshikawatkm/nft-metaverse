@@ -39,7 +39,7 @@ export class EthersService {
 
       async convert(): Promise<number> {
         let oldTokenURI = await this.findByTokenId();
-        let newTokenURI; // = await jsonManager.updateJson();
+        let newTokenURI; // = await this._jsonManager.updateJson();
         let tokenId; // ether.contract.writeData(oldTokenURI, newTokenURI);
         return tokenId;
       }

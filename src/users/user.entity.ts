@@ -1,6 +1,5 @@
 import { CreateDateColumn, UpdateDateColumn, Entity, Column, PrimaryGeneratedColumn, Generated, Unique, OneToMany } from 'typeorm';
 import { IsEmail, IsInt,  MaxLength } from "class-validator";
-import { UserOrder } from 'src/user-orders/user-order.entity';
 import { NftModel } from 'src/nft_models/nft_model.entity';
 
 @Entity("users")
@@ -30,9 +29,12 @@ export class User {
   @Column()
   privateKey: string;  // PoCなので生で保存
 
-  @OneToMany(() => NftModel, (nftModel)=> nftModel.user)
+
+  @OneToMany(() => NftModel, (nftModel)=> nftModel.user, {
+    cascade: true,
+  })
   nftModels: NftModel[];
-  
+
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   readonly createdAt: Date;
   

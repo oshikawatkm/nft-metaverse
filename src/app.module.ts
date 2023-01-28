@@ -17,13 +17,9 @@ import { User } from './users/user.entity';
 import { ModelConverter } from './model_converters/model_converter.entity';
 import { Order } from './orders/order.entity';
 import { NftModel } from './nft_models/nft_model.entity';
-import { UserOrder } from './user-orders/user-order.entity';
-import { OrderModelConverter } from './order-model_converters/order-model_converter.entity';
 import { UsersModule } from './users/users.module';
 import { ModelsConvertersModule } from './model_converters/model_converters.module';
 import { OrdersModule } from './orders/orders.module';
-import { UserOrdersModule } from './user-orders/user-orders.module';
-import { OrderModelConvertersModule } from './order-model_converters/order-model_converters.module';
 
 @Module({
   imports: [
@@ -39,8 +35,6 @@ import { OrderModelConvertersModule } from './order-model_converters/order-model
         ModelConverter,
         NftModel,
         Order,
-        UserOrder,
-        OrderModelConverter
       ],
       synchronize: true,
     }),
@@ -49,16 +43,12 @@ import { OrderModelConvertersModule } from './order-model_converters/order-model
       ModelConverter,
       NftModel,
       Order,
-      UserOrder,
-      OrderModelConverter
     ]),
     ConfigModule.forRoot({ envFilePath: ['.env'] }),
     UsersModule,
     ModelsConvertersModule,
     NftModelsModule,
     OrdersModule,
-    UserOrdersModule,
-    OrderModelConvertersModule
   ],
   controllers: [
     AppController,

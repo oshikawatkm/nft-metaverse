@@ -6,6 +6,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ModelConvertersService } from '../model_converters/model_converters.service';
 import { UsersService } from '../users/users.service';
+import { EthersService } from '../ethers/ethers.service';
 
 @ApiTags('orders')
 @Controller('orders')
@@ -15,6 +16,7 @@ export class OrdersController {
     private readonly ordersService: OrdersService,
     private readonly usersService: UsersService,
     private readonly modelConvertersService: ModelConvertersService,
+    private readonly ethersService: EthersService,
   ) {}
 
   @Get()
@@ -30,12 +32,12 @@ export class OrdersController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<Order> {
-    return this.ordersService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Order> {
+    return await this.ordersService.findOne(id);
   }
 
   @Put(':id/commissione')
-  async commissione(@Param('id', ParseIntPipe) id: number, @Body() createOrderDto: CreateOrderDto) {
+  async commissione(@Param('id', ParseIntPipe) id: number) {
     let modelConverter = await this.modelConvertersService.findOne(1);
     this.ordersService.commission(id, modelConverter);
   }
@@ -57,6 +59,7 @@ export class OrdersController {
   @UseInterceptors(FileInterceptor('file'))
   async complete(@Param('id', ParseIntPipe) id: number, @Body() createOrderDto: CreateOrderDto) {
     let modelConverter = await this.modelConvertersService.findOne(1);
+    this.ethersService.convert();
     this.ordersService.complete(id, modelConverter);
   }
 
