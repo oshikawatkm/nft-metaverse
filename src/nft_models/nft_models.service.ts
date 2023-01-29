@@ -29,7 +29,7 @@ export class NftModelsService {
         return this.nftModelRepository.find();
       }
     
-      findOne(id: number): Promise<NftModel> {
+      async findOne(id: number): Promise<NftModel> {
         return this.nftModelRepository.findOneBy({ id });
       }
 }

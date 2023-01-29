@@ -26,6 +26,10 @@ export class NftModel {
 
   @Column()
   @IsInt()
+  creator: string;
+
+  @Column()
+  @IsInt()
   description: string;
 
   @Column()

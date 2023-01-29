@@ -1,4 +1,4 @@
-import { Body, Version, Param, Controller, Get, Post, Put, ParseIntPipe, UseInterceptors } from '@nestjs/common';
+import { Body, Version, Param, Controller, Get, Post, Put, ParseIntPipe, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { Order } from './order.entity';
 import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
@@ -7,6 +7,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ModelConvertersService } from '../model_converters/model_converters.service';
 import { UsersService } from '../users/users.service';
 import { EthersService } from '../ethers/ethers.service';
+import { NftModelsService } from 'src/nft_models/nft_models.service';
 
 @ApiTags('orders')
 @Controller('orders')
@@ -16,6 +17,7 @@ export class OrdersController {
     private readonly ordersService: OrdersService,
     private readonly usersService: UsersService,
     private readonly modelConvertersService: ModelConvertersService,
+    private readonly nftModelsService: NftModelsService,
     private readonly ethersService: EthersService,
   ) {}
 
@@ -57,10 +59,17 @@ export class OrdersController {
     },
   })
   @UseInterceptors(FileInterceptor('file'))
-  async complete(@Param('id', ParseIntPipe) id: number, @Body() createOrderDto: CreateOrderDto) {
+  async complete(@UploadedFile() file: Express.Multer.File, @Param('id', ParseIntPipe) id: number, @Body() createOrderDto: CreateOrderDto) {
     let modelConverter = await this.modelConvertersService.findOne(1);
-    this.ethersService.convert();
-    this.ordersService.complete(id, modelConverter);
+    let nftModel = await this.nftModelsService.findOne(1);
+    await this.ethersService.convert(
+      nftModel.tokenId,
+      nftModel.filename,
+      modelConverter.did,
+      nftModel.format,
+      file.filename
+    );
+    await this.ordersService.complete(id, modelConverter);
   }
 
 }
