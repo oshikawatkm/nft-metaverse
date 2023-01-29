@@ -5,10 +5,10 @@ import { JsonManager } from 'src/utils/jsonManager';
 @Injectable()
 export class EthersService {
     private readonly _jsonManager: JsonManager;
-    private readonly infuraProvider: ethers.providers.InfuraProvider;
+    private readonly _infuraProvider: ethers.providers.InfuraProvider;
     
     constructor() {
-      this.infuraProvider =  new ethers.providers.InfuraProvider("goerli", {
+      this._infuraProvider =  new ethers.providers.InfuraProvider("goerli", {
         projectId: process.env.INFURA_PROJECT_ID,
         projectSecret: process.env.INFURA_API_KEY
       });
@@ -50,5 +50,8 @@ export class EthersService {
         return metadata;
       }
 
-
+      async getBalance(privateKey): Promise<ethers.BigNumber> {
+        let wallet =  new ethers.Wallet(privateKey, this._infuraProvider);
+        return await wallet.getBalance();
+      }
 }

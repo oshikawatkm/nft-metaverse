@@ -23,13 +23,20 @@ export class UsersController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    let [pubKey, privateKey, address] = await this.ethersService.generateKeyPair();
+    let [privateKey, pubKey, address] = await this.ethersService.generateKeyPair();
     this.usersService.create(createUserDto, pubKey, privateKey, address);
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<User> {
-    return this.usersService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<any> {
+    let user = await this.usersService.findOne(id);
+    let userPrivkey = user.privateKey;
+    let balance = await this.ethersService.getBalance(userPrivkey);
+
+    return {
+      ...user,
+      balance: parseInt(balance["_hex"], 16)
+    }
   }
 
   @Post("login")

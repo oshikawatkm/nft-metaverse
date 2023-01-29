@@ -22,13 +22,20 @@ export class ModelConvertersController {
 
   @Post()
   async create(@Body() createUserDto: ModelConverter) {
-    let [pubKey, privateKey, address] = await this.ethersService.generateKeyPair();
+    let [privateKey, pubKey, address] = await this.ethersService.generateKeyPair();
     this.modelConvertersService.create(createUserDto, pubKey, privateKey, address);
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<ModelConverter> {
-    return this.modelConvertersService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<any> {
+    let modelConverter = await this.modelConvertersService.findOne(id);
+    let modelConverterPrivkey = modelConverter.privateKey;
+    let balance = await this.ethersService.getBalance(modelConverterPrivkey);
+    console.log(modelConverter)
+    return {
+      ...modelConverter,
+      balance: parseInt(balance["_hex"], 16)
+    }
   }
 
   @Post('login')
