@@ -13,7 +13,7 @@ export class ModelConvertersService {
         private modelConvertersRepository: Repository<ModelConverter>,
       ) {}
     
-      create(createModelConverterDto: CreateModelConverterDto, pubkey: string, privateKey): Promise<ModelConverter> {
+      create(createModelConverterDto: CreateModelConverterDto, pubkey: string, privateKey: string, address: string): Promise<ModelConverter> {
         const modelConverter = new ModelConverter();
         modelConverter.name = createModelConverterDto.name;
         modelConverter.email = createModelConverterDto.email;
@@ -21,6 +21,7 @@ export class ModelConvertersService {
         modelConverter.password = createModelConverterDto.password;
         modelConverter.publicKey = pubkey;
         modelConverter.privateKey = privateKey;
+        modelConverter.address = address;
     
         return this.modelConvertersRepository.save(modelConverter);
       }

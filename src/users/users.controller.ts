@@ -23,8 +23,8 @@ export class UsersController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    let [pubKey, privateKey] = await this.ethersService.generateKeyPair();
-    this.usersService.create(createUserDto, pubKey, privateKey);
+    let [pubKey, privateKey, address] = await this.ethersService.generateKeyPair();
+    this.usersService.create(createUserDto, pubKey, privateKey, address);
   }
 
   @Get(':id')

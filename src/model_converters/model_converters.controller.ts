@@ -22,8 +22,8 @@ export class ModelConvertersController {
 
   @Post()
   async create(@Body() createUserDto: ModelConverter) {
-    let [pubKey, privateKey] = await this.ethersService.generateKeyPair();
-    this.modelConvertersService.create(createUserDto, pubKey, privateKey);
+    let [pubKey, privateKey, address] = await this.ethersService.generateKeyPair();
+    this.modelConvertersService.create(createUserDto, pubKey, privateKey, address);
   }
 
   @Get(':id')

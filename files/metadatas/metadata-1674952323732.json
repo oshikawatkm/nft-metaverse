@@ -1,0 +1,31 @@
+{
+	"title": "NFT Metaverse",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "cdsc"
+		},
+		"creator": {
+			"type": "string",
+			"description": "did:ether:goerli:0x146bd90e8ed1a22484889042e39cbcbc798dc2d48b93a87dc58aece547acbf0d"
+		},
+		"description": {
+			"type": "string",
+			"description": "csds"
+		},
+		"format": {
+			"type": "string",
+			"description": "cdsdcs"
+		},
+		"copyright": {
+			"type": "string",
+			"description": "cdscds"
+		},
+		"model": {
+			"type": "string",
+			"description": "/home/oshikawa/nft-metaverse/files/metadatas/3c81511b2d6975aa72c21ebfa3bedc0dcdsdcs"
+		}
+	},
+	"updated": []
+}

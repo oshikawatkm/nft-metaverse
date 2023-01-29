@@ -27,6 +27,9 @@ export class ModelConverter {
 
   @Column()
   privateKey: string;  // PoCなので生で保存
+
+  @Column()
+  address: string;
   
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   readonly createdAt: Date;

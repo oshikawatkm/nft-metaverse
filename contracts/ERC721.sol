@@ -9,15 +9,15 @@ contract MetaverseModel is ERC721URIStorage {
 
     constructor() ERC721("MetaverseToken", "MT") {}
 
-    function awardItem(address player, string memory tokenURI)
+    function newItem(address player, string memory tokenURI)
         public
         returns (uint256)
     {
+        _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         _mint(player, newItemId);
         _setTokenURI(newItemId, tokenURI);
 
-        _tokenIds.increment();
         return newItemId;
     }
 }

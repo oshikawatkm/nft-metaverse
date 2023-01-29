@@ -29,6 +29,8 @@ export class User {
   @Column()
   privateKey: string;  // PoCなので生で保存
 
+  @Column()
+  address: string;
 
   @OneToMany(() => NftModel, (nftModel)=> nftModel.user, {
     cascade: true,

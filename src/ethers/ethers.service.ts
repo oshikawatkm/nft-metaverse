@@ -15,11 +15,12 @@ export class EthersService {
       this._jsonManager = new JsonManager();
     }
 
-      async generateKeyPair(): Promise<[string, string]> {
+      async generateKeyPair(): Promise<[string, string, string]> {
         const wallet = ethers.Wallet.createRandom()
         const privateKey = wallet.privateKey;
         const publicKey = wallet.publicKey;
-        return [privateKey, publicKey];
+        const address = wallet.address;
+        return [privateKey, publicKey, address];
       }
     
       async mint(

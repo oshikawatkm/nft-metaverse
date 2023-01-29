@@ -14,7 +14,7 @@ export class UsersService {
         private usersRepository: Repository<User>,
       ) {}
     
-      create(createUserDto: CreateUserDto, pubKey: string, privateKey: string): Promise<User> {
+      create(createUserDto: CreateUserDto, pubKey: string, privateKey: string, address: string): Promise<User> {
         const user = new User();
         user.name = createUserDto.name;
         user.email = createUserDto.email;
@@ -22,6 +22,7 @@ export class UsersService {
         user.password = createUserDto.password;
         user.publicKey = pubKey;
         user.privateKey = privateKey;
+        user.address = address;
     
         return this.usersRepository.save(user);
       }
