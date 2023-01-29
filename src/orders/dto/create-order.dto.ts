@@ -6,7 +6,7 @@ export class CreateOrderDto {
   readonly tokenId: number;
 
   @IsNotEmpty()
-  readonly reward_wei: number;
+  readonly rewardWei: number;
 
   @IsNotEmpty()
   readonly format: string;

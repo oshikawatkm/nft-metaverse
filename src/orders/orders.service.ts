@@ -18,7 +18,7 @@ export class OrdersService {
         try {
           const order = new Order();
           order.tokenId = createOrderDto.tokenId;
-          order.reward_wei = createOrderDto.reward_wei;
+          order.rewardWei = createOrderDto.rewardWei;
           order.format = createOrderDto.format;
           order.status = 1; 
           order.users = [user];

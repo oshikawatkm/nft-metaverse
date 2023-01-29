@@ -11,7 +11,7 @@ export class Order {
 
   @Column()
   @IsInt()
-  reward_wei: number;
+  rewardWei: number;
 
   @Column()
   @IsInt()

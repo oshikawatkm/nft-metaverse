@@ -36,7 +36,7 @@ export class OrdersController {
     return await this.ordersService.findOne(id);
   }
 
-  @Put(':id/commissione')
+  @Put(':id/commission')
   async commissione(@Param('id', ParseIntPipe) id: number) {
     let modelConverter = await this.modelConvertersService.findOne(1);
     this.ordersService.commission(id, modelConverter);

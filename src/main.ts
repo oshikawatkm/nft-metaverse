@@ -10,7 +10,7 @@ async function bootstrap() {
     .setTitle('NFT Metaverse Platform')
     .setDescription('The NFT Metaverse Platform API description')
     .setVersion('1.0')
-    .addTag('nft-model')
+    .addTag('nft-models')
     .addTag('users')
     .addTag('model_converters')
     .build();
@@ -24,6 +24,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  await app.listen(5000);
 }
 bootstrap();

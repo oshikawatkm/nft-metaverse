@@ -7,8 +7,8 @@ import { NftModel } from './nft_model.entity';
 import { FileInterceptor, MulterModule } from '@nestjs/platform-express';
 import { UsersService } from '../users/users.service';
 
-@ApiTags('nft-model')
-@Controller('nft-model')
+@ApiTags('nft-models')
+@Controller('nft-models')
 export class NftModelsController {
 
   constructor(
