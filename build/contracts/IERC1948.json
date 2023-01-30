@@ -78,14 +78,14 @@
     "absolutePath": "project:/contracts/IERC1948.sol",
     "exportedSymbols": {
       "IERC1948": [
-        2885
+        2899
       ]
     },
-    "id": 2886,
+    "id": 2900,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2861,
+        "id": 2875,
         "literals": [
           "solidity",
           "^",
@@ -102,15 +102,15 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 2862,
+          "id": 2876,
           "nodeType": "StructuredDocumentation",
           "src": "25:50:14",
           "text": " @dev Interface of the ERC1948 contract."
         },
         "fullyImplemented": false,
-        "id": 2885,
+        "id": 2899,
         "linearizedBaseContracts": [
-          2885
+          2899
         ],
         "name": "IERC1948",
         "nameLocation": "86:8:14",
@@ -119,23 +119,23 @@
           {
             "anonymous": false,
             "eventSelector": "70fc7d66686bb9a40f0b9075882d22a152689e4619fc666c06c2b3b51befa3c8",
-            "id": 2870,
+            "id": 2884,
             "name": "DataUpdated",
             "nameLocation": "106:11:14",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 2869,
+              "id": 2883,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2864,
+                  "id": 2878,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "tokenId",
                   "nameLocation": "134:7:14",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2870,
+                  "scope": 2884,
                   "src": "118:23:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -144,7 +144,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2863,
+                    "id": 2877,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "118:7:14",
@@ -157,13 +157,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2866,
+                  "id": 2880,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "oldData",
                   "nameLocation": "150:7:14",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2870,
+                  "scope": 2884,
                   "src": "143:14:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -172,7 +172,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2865,
+                    "id": 2879,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "143:6:14",
@@ -185,13 +185,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 2868,
+                  "id": 2882,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "newData",
                   "nameLocation": "166:7:14",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2870,
+                  "scope": 2884,
                   "src": "159:14:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -200,7 +200,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2867,
+                    "id": 2881,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "159:6:14",
@@ -218,7 +218,7 @@
           },
           {
             "functionSelector": "37ebbc03",
-            "id": 2877,
+            "id": 2891,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -226,17 +226,17 @@
             "nameLocation": "188:8:14",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2873,
+              "id": 2887,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2872,
+                  "id": 2886,
                   "mutability": "mutable",
                   "name": "tokenId",
                   "nameLocation": "205:7:14",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2877,
+                  "scope": 2891,
                   "src": "197:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -245,7 +245,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2871,
+                    "id": 2885,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "197:7:14",
@@ -260,17 +260,17 @@
               "src": "196:17:14"
             },
             "returnParameters": {
-              "id": 2876,
+              "id": 2890,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2875,
+                  "id": 2889,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2877,
+                  "scope": 2891,
                   "src": "237:13:14",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -279,7 +279,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2874,
+                    "id": 2888,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "237:6:14",
@@ -293,7 +293,7 @@
               ],
               "src": "236:15:14"
             },
-            "scope": 2885,
+            "scope": 2899,
             "src": "179:73:14",
             "stateMutability": "view",
             "virtual": false,
@@ -301,7 +301,7 @@
           },
           {
             "functionSelector": "c24bdc08",
-            "id": 2884,
+            "id": 2898,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -309,17 +309,17 @@
             "nameLocation": "265:9:14",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2882,
+              "id": 2896,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2879,
+                  "id": 2893,
                   "mutability": "mutable",
                   "name": "tokenId",
                   "nameLocation": "283:7:14",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2884,
+                  "scope": 2898,
                   "src": "275:15:14",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -328,7 +328,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2878,
+                    "id": 2892,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "275:7:14",
@@ -341,12 +341,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 2881,
+                  "id": 2895,
                   "mutability": "mutable",
                   "name": "newData",
                   "nameLocation": "306:7:14",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2884,
+                  "scope": 2898,
                   "src": "292:21:14",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -355,7 +355,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 2880,
+                    "id": 2894,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "292:6:14",
@@ -370,19 +370,19 @@
               "src": "274:40:14"
             },
             "returnParameters": {
-              "id": 2883,
+              "id": 2897,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "323:0:14"
             },
-            "scope": 2885,
+            "scope": 2899,
             "src": "256:68:14",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 2886,
+        "scope": 2900,
         "src": "76:251:14",
         "usedErrors": []
       }
@@ -395,7 +395,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-01-30T00:15:46.065Z",
+  "updatedAt": "2023-01-30T09:41:22.340Z",
   "devdoc": {
     "details": "Interface of the ERC1948 contract.",
     "kind": "dev",

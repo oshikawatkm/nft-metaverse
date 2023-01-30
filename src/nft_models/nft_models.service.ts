@@ -16,6 +16,7 @@ export class NftModelsService {
         const nftModel = new NftModel();
         nftModel.tokenId = tokenId;
         nftModel.name = createNftModelDto.name;
+        nftModel.creator = user.did;
         nftModel.copyright = createNftModelDto.copyright;
         nftModel.format = createNftModelDto.format;
         nftModel.description = createNftModelDto.description;

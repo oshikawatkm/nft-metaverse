@@ -151,6 +151,8 @@ export interface MetaverseModel extends BaseContract {
       player: string,
       tokenURI: string
     ): NonPayableTransactionObject<string>;
+
+    totalSuply(): NonPayableTransactionObject<string>;
   };
   events: {
     Approval(cb?: Callback<Approval>): EventEmitter;

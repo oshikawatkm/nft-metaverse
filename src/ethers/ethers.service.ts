@@ -36,16 +36,17 @@ export class EthersService {
         format: string,
         copyright: string,
         creator: string,
-        modelPath: string,
-        tokenId: number
+        modelPath: string
       ): Promise<[number, string]> {
+        await this._getLatestTokenId();
+
         let metadataFilePath = await this._jsonManager.generateJson(
           name, creator, description, format, copyright, modelPath
         );
         const data = await this._contract.methods.newItem(address, metadataFilePath).encodeABI();
         let tx = await this._genetateTx(address, data);
         let transactionReceipt = await this._sendSignedTx(tx, privKey);
-        tokenId += 1;
+        let tokenId  = await this._getLatestTokenId();
         
         return [tokenId, metadataFilePath];
       }
@@ -59,9 +60,8 @@ export class EthersService {
         format: string, 
         model: string
       ): Promise<number> {
-        let oldTokenURI = await this.findByTokenId(tokenId);
         let newTokenURI = await this._jsonManager.updateJson(oldFilename, converter, format, model);
-        const data = await this._contract.methods.writeData(oldTokenURI, newTokenURI).encodeABI();
+        const data = await this._contract.methods.writeData(tokenId, newTokenURI).encodeABI();
         let tx = await this._genetateTx(address, data);
         let transactionReceipt = await this._sendSignedTx(tx, privKey);
 
@@ -71,6 +71,13 @@ export class EthersService {
       async filterEvent() {
 
       }
+
+      async _getLatestTokenId(): Promise<number> {
+        let latestTokenId = await this._contract.methods.totalSuply().call();
+        console.log(latestTokenId)
+        return latestTokenId;
+      }
+
 
       async findByTokenId(tokenId: number): Promise<number> {
         let metadata = await this._contract.methods.tokenURI(tokenId).call();
@@ -89,7 +96,7 @@ export class EthersService {
           'from': address,
           'to': process.env.CONTRACT_ADDRESS,
           'nonce': nonce,
-          'gas': gasPrice+ 90000,
+          'gas': gasPrice+ 9000,
           'data': data
         };
         console.log(tx)

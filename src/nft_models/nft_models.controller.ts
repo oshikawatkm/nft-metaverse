@@ -44,9 +44,7 @@ export class NftModelsController {
   async create(@UploadedFile() file: Express.Multer.File, @Body() createNftModelDto: CreateNftModelDto) {
     try {
       let modelFileName = file.filename;
-      let user = await this.usersService.findOne(1)
-      let nftModel = await this.nftModelsService.findLast();
-      let lastTokenId = nftModel ? nftModel.tokenId : 0;
+      let user = await this.usersService.findOne(1);
       let [tokenId, metadataFile] = await this.ethersService.mint(
           user.privateKey,
           user.address,
@@ -55,8 +53,7 @@ export class NftModelsController {
           createNftModelDto.format,
           createNftModelDto.copyright,
           user.did,
-          modelFileName,
-          lastTokenId
+          modelFileName
         );
       await this.nftModelsService.create(createNftModelDto, tokenId, metadataFile, user);
       return true;

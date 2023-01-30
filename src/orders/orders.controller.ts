@@ -30,7 +30,7 @@ export class OrdersController {
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
     let user = await this.usersService.findOne(1);
-    this.ordersService.create(createOrderDto, user);
+    return await this.ordersService.create(createOrderDto, user);
   }
 
   @Get(':id')
@@ -60,10 +60,8 @@ export class OrdersController {
   })
   @UseInterceptors(FileInterceptor('file'))
   async complete(@UploadedFile() file: Express.Multer.File, @Param('id', ParseIntPipe) id: number, @Body() createOrderDto: CreateOrderDto) {
-    console.log(file)
     let modelConverter = await this.modelConvertersService.findOne(1);
     let nftModel = await this.nftModelsService.findOne(1);
-    console.log(nftModel)
     let user = await this.usersService.findOne(1);
 
     await this.ethersService.convert(

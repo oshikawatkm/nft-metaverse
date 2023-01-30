@@ -38,35 +38,36 @@ export class JsonManager {
         let filename = `metadata-${Date.now()}.json`;
         await this._writeFileJson(readJson, filename)
 
-        return filename;
+        return this.baseMetadataFilePath + filename;
     }
 
     public async updateJson(oldFilename: string, converter: string, format: string, model: string, sign: string = null) {
         let newJson;
-        let oldJson = await this._readFileJson(this.baseMetadataFilePath +  oldFilename);
+        let oldJson = await this._readFileJson(oldFilename);
 
-        if (sign !== null) {
-            let updateTemplate = await this._readFileJson(this.metadataUpdatedTemplateFilePath);
+        // if (sign !== null) {
+        let updateTemplate = await this._readFileJson(this.metadataUpdatedTemplateFilePath);
 
-            updateTemplate.converter.description = converter;
-            updateTemplate.format.description = format;
-            updateTemplate.model.description = this.baseMetadataFilePath + model + format;
+        updateTemplate.converter.description = converter;
+        updateTemplate.format.description = format;
+        updateTemplate.model.description = this.baseMetadataFilePath + model + format;
 
-            newJson = oldJson.updated.append(updateTemplate)
-        } else {
-            let updateWithSignTemplate = await this._readFileJson(this.metadataUpdatedTemplateWithSignFilePath);
+        oldJson.updated.push(updateTemplate)
+        newJson = oldJson;
+        // } else {
+        //     let updateWithSignTemplate = await this._readFileJson(this.metadataUpdatedTemplateWithSignFilePath);
 
-            updateWithSignTemplate.converter.description = converter;
-            updateWithSignTemplate.format.description = format;
-            updateWithSignTemplate.model.description = model;
-            updateWithSignTemplate.sign.description = sign;
+        //     updateWithSignTemplate.converter.description = converter;
+        //     updateWithSignTemplate.format.description = format;
+        //     updateWithSignTemplate.model.description = model;
+        //     updateWithSignTemplate.sign.description = sign;
 
-            newJson = oldJson.updated.append(updateWithSignTemplate)
-        }
+        //     newJson = oldJson.updated.append(updateWithSignTemplate)
+        // }
         let newFilename = `metadata-${Date.now()}.json`;
         await this._writeFileJson(newJson, newFilename);
 
-        return newFilename;
+        return this.baseMetadataFilePath + newFilename;
     }
 
     private async _readFileJson(templateFilePath: string) {

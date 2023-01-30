@@ -151,6 +151,8 @@ export interface ERC1948 extends BaseContract {
       tokenId: number | string | BN
     ): NonPayableTransactionObject<string>;
 
+    totalSuply(): NonPayableTransactionObject<string>;
+
     /**
      * See {IERC721-transferFrom}.
      */

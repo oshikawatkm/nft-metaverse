@@ -20,4 +20,9 @@ contract MetaverseModel is ERC721URIStorage {
 
         return newItemId;
     }
+
+    function totalSuply() external view returns (uint256) {
+        uint256 latestTokenId =  _tokenIds.current();
+        return latestTokenId;
+    }
 }
