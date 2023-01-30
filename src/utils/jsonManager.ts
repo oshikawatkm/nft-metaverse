@@ -43,8 +43,9 @@ export class JsonManager {
 
     public async updateJson(oldFilename: string, converter: string, format: string, model: string, sign: string = null) {
         let newJson;
+        oldFilename = "/home/oshikawa/nft-metaverse/files/metadatas/model-1674782288539.json"
         let oldJson = await this._readFileJson(oldFilename);
-
+        console.log(oldFilename)
         // if (sign !== null) {
         let updateTemplate = await this._readFileJson(this.metadataUpdatedTemplateFilePath);
 

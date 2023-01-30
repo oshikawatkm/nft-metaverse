@@ -63,7 +63,13 @@ export class NftModelsController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<NftModel> {
-    return this.nftModelsService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<any> {
+    let nftModel = await this.nftModelsService.findOne(id);
+    let events = await this.ethersService.filterEvent(nftModel.tokenId);
+
+    return {
+      ...nftModel,
+      events
+    }
   }
 }

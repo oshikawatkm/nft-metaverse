@@ -68,8 +68,17 @@ export class EthersService {
         return transactionReceipt;
       }
     
-      async filterEvent() {
+      async filterEvent(tokenId: number) {
+        let filterdEvent =[]
+        let events = await this._contract.getPastEvents('DataUpdated', {fromBlock: 0,  toBlock: 'latest'});
+        events.forEach(event => {
+          if(event.returnValues.tokenId == tokenId){
+            filterdEvent.push(event.returnValues)
+          }
+        });
+        console.log(filterdEvent)
 
+        return filterdEvent;
       }
 
       async _getLatestTokenId(): Promise<number> {
@@ -102,6 +111,7 @@ export class EthersService {
         console.log(tx)
         return tx;
       }
+      
     
     async _sendSignedTx(tx, privKey) {
       const signedTx = await this._web3.eth.accounts.signTransaction(tx, privKey);
