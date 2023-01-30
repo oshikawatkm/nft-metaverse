@@ -7,6 +7,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { UsersModule } from '../users/users.module';
 import { ModelsConvertersModule } from '../model_converters/model_converters.module';
 import { EthersModule } from '../ethers/ethers.module';
+import { NftModelsModule } from 'src/nft_models/nft_models.module';
 
 @Module({
     imports: [
@@ -14,7 +15,8 @@ import { EthersModule } from '../ethers/ethers.module';
         MulterModule.register({ dest: './files/models' }),
         UsersModule,
         ModelsConvertersModule,
-        EthersModule
+        EthersModule,
+        NftModelsModule
     ],
     providers: [OrdersService],
     exports: [OrdersService],

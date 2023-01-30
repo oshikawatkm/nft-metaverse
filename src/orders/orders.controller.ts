@@ -39,9 +39,9 @@ export class OrdersController {
   }
 
   @Put(':id/commission')
-  async commissione(@Param('id', ParseIntPipe) id: number) {
+  async commission(@Param('id', ParseIntPipe) id: number) {
     let modelConverter = await this.modelConvertersService.findOne(1);
-    this.ordersService.commission(id, modelConverter);
+    await this.ordersService.commission(id, modelConverter);
   }
 
   @Put(':id/complete')
@@ -60,9 +60,14 @@ export class OrdersController {
   })
   @UseInterceptors(FileInterceptor('file'))
   async complete(@UploadedFile() file: Express.Multer.File, @Param('id', ParseIntPipe) id: number, @Body() createOrderDto: CreateOrderDto) {
+    console.log(file)
     let modelConverter = await this.modelConvertersService.findOne(1);
     let nftModel = await this.nftModelsService.findOne(1);
+    console.log(nftModel)
+    let user = await this.usersService.findOne(1);
+
     await this.ethersService.convert(
+      user.address,
       nftModel.tokenId,
       nftModel.filename,
       modelConverter.did,

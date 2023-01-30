@@ -29,12 +29,13 @@ export class ModelConvertersController {
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<any> {
     let modelConverter = await this.modelConvertersService.findOne(id);
-    let modelConverterPrivkey = modelConverter.privateKey;
-    let balance = await this.ethersService.getBalance(modelConverterPrivkey);
     console.log(modelConverter)
+    let address = modelConverter.address;
+    let balance = await this.ethersService.getBalance(address);
+
     return {
       ...modelConverter,
-      balance: parseInt(balance["_hex"], 16)
+      balance
     }
   }
 

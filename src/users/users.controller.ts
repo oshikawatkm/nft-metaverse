@@ -30,12 +30,12 @@ export class UsersController {
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<any> {
     let user = await this.usersService.findOne(id);
-    let userPrivkey = user.privateKey;
-    let balance = await this.ethersService.getBalance(userPrivkey);
+    let address = user.address;
+    let balance = await this.ethersService.getBalance(address);
 
     return {
       ...user,
-      balance: parseInt(balance["_hex"], 16)
+      balance
     }
   }
 

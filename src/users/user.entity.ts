@@ -32,11 +32,6 @@ export class User {
   @Column()
   address: string;
 
-  @OneToMany(() => NftModel, (nftModel)=> nftModel.user, {
-    cascade: true,
-  })
-  nftModels: NftModel[];
-
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   readonly createdAt: Date;
   

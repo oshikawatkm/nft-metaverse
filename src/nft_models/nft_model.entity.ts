@@ -1,4 +1,4 @@
-import { CreateDateColumn, UpdateDateColumn, Entity, Column, PrimaryGeneratedColumn, Generated, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+import { CreateDateColumn, UpdateDateColumn, Entity, Column, PrimaryGeneratedColumn, Generated, OneToMany, ManyToOne, JoinColumn, ManyToMany, JoinTable } from 'typeorm';
 import { IsInt } from "class-validator";
 import { User } from 'src/users/user.entity';
 
@@ -36,11 +36,11 @@ export class NftModel {
   @IsInt()
   format: string;
 
-  @ManyToOne(() => User, (user) => user.id, {
-    onDelete: "CASCADE",
+  @ManyToMany(() => User, (user) => user,  {
+    cascade: true,
   })
-  @JoinColumn({ name: "user_id" })
-  public user!: User;
+  @JoinTable()
+  users: User[];
   
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   readonly createdAt: Date;

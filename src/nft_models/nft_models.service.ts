@@ -20,7 +20,7 @@ export class NftModelsService {
         nftModel.format = createNftModelDto.format;
         nftModel.description = createNftModelDto.description;
         nftModel.filename = filename;
-        nftModel.user = user;
+        nftModel.users = [user];
     
         return this.nftModelRepository.save(nftModel);
       }

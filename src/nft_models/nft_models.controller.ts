@@ -46,6 +46,7 @@ export class NftModelsController {
       let modelFileName = file.filename;
       let user = await this.usersService.findOne(1)
       let [tokenId, metadataFile] = await this.ethersService.mint(
+          user.privateKey,
           user.address,
           createNftModelDto.name, 
           createNftModelDto.description,
