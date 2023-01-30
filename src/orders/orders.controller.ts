@@ -67,6 +67,7 @@ export class OrdersController {
     let user = await this.usersService.findOne(1);
 
     await this.ethersService.convert(
+      user.privateKey,
       user.address,
       nftModel.tokenId,
       nftModel.filename,

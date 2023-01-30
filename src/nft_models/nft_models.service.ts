@@ -32,4 +32,10 @@ export class NftModelsService {
       async findOne(id: number): Promise<NftModel> {
         return this.nftModelRepository.findOneBy({ id });
       }
+
+      async findLast(): Promise<NftModel> {
+        return await this.nftModelRepository.findOne({
+          order: { id: 'DESC' }
+      });
+      }
 }

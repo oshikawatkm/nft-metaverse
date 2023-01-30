@@ -45,6 +45,8 @@ export class NftModelsController {
     try {
       let modelFileName = file.filename;
       let user = await this.usersService.findOne(1)
+      let nftModel = await this.nftModelsService.findLast();
+      let lastTokenId = nftModel ? nftModel.tokenId : 0;
       let [tokenId, metadataFile] = await this.ethersService.mint(
           user.privateKey,
           user.address,
@@ -53,7 +55,8 @@ export class NftModelsController {
           createNftModelDto.format,
           createNftModelDto.copyright,
           user.did,
-          modelFileName
+          modelFileName,
+          lastTokenId
         );
       await this.nftModelsService.create(createNftModelDto, tokenId, metadataFile, user);
       return true;

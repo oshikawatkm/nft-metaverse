@@ -37,36 +37,35 @@ export class EthersService {
         copyright: string,
         creator: string,
         modelPath: string,
+        tokenId: number
       ): Promise<[number, string]> {
-        let wallet = this._web3.eth.accounts.privateKeyToAccount(privKey)
         let metadataFilePath = await this._jsonManager.generateJson(
           name, creator, description, format, copyright, modelPath
         );
-        const nonce = await this._web3.eth.getTransactionCount(address, 'latest'); 
-        let gasPrice = await this._web3.eth.getGasPrice();
-        const tx = {
-          'from': address,
-          'to': process.env.CONTRACT_ADDRESS,
-          'nonce': nonce,
-          'gas': gasPrice+ 90000,
-          'data': this._contract.methods.newItem(address, metadataFilePath).encodeABI()
-        };
-        console.log(tx)
-
-        const signedTx = await this._web3.eth.accounts.signTransaction(tx, privKey);
-        console.log(signedTx)
-        const transactionReceipt = await this._web3.eth.sendSignedTransaction(signedTx.rawTransaction);
-        console.log(transactionReceipt)
-        let tokenId;
+        const data = await this._contract.methods.newItem(address, metadataFilePath).encodeABI();
+        let tx = await this._genetateTx(address, data);
+        let transactionReceipt = await this._sendSignedTx(tx, privKey);
+        tokenId += 1;
         
         return [tokenId, metadataFilePath];
       }
 
-      async convert(address: string, tokenId: number, oldFilename: string, converter: string, format: string, model: string): Promise<number> {
+      async convert(
+        privKey: string,
+        address: string, 
+        tokenId: number, 
+        oldFilename: string, 
+        converter: string, 
+        format: string, 
+        model: string
+      ): Promise<number> {
         let oldTokenURI = await this.findByTokenId(tokenId);
         let newTokenURI = await this._jsonManager.updateJson(oldFilename, converter, format, model);
-        await this._contract.methods.writeData(oldTokenURI, newTokenURI).send({ from: address});
-        return tokenId;
+        const data = await this._contract.methods.writeData(oldTokenURI, newTokenURI).encodeABI();
+        let tx = await this._genetateTx(address, data);
+        let transactionReceipt = await this._sendSignedTx(tx, privKey);
+
+        return transactionReceipt;
       }
     
       async filterEvent() {
@@ -82,4 +81,24 @@ export class EthersService {
         let balance = await this._web3.eth.getBalance(address);
         return await balance;
       }
+
+      async _genetateTx(address: string, data): Promise<object>{
+        const nonce = await this._web3.eth.getTransactionCount(address, 'latest'); 
+        let gasPrice = await this._web3.eth.getGasPrice();
+        const tx = {
+          'from': address,
+          'to': process.env.CONTRACT_ADDRESS,
+          'nonce': nonce,
+          'gas': gasPrice+ 90000,
+          'data': data
+        };
+        console.log(tx)
+        return tx;
+      }
+    
+    async _sendSignedTx(tx, privKey) {
+      const signedTx = await this._web3.eth.accounts.signTransaction(tx, privKey);
+      const transactionReceipt = await this._web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+      return transactionReceipt;
+    }
 }
