@@ -1,4 +1,4 @@
-import { Body, Version, Param, Controller, Get, Post, Put, ParseIntPipe, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Body, Version, Param, Controller, Get, Post, Put, ParseIntPipe, UseInterceptors, UploadedFile, UseGuards } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { Order } from './order.entity';
 import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
@@ -8,6 +8,7 @@ import { ModelConvertersService } from '../model_converters/model_converters.ser
 import { UsersService } from '../users/users.service';
 import { EthersService } from '../ethers/ethers.service';
 import { NftModelsService } from 'src/nft_models/nft_models.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('orders')
 @Controller('orders')
@@ -21,29 +22,34 @@ export class OrdersController {
     private readonly ethersService: EthersService,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   @Version('1')
   findAll(): Promise<Order[]> {
     return this.ordersService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
     let user = await this.usersService.findOne(1);
     return await this.ordersService.create(createOrderDto, user);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<Order> {
     return await this.ordersService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put(':id/commission')
   async commission(@Param('id', ParseIntPipe) id: number) {
     let modelConverter = await this.modelConvertersService.findOne(1);
     await this.ordersService.commission(id, modelConverter);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put(':id/complete')
   @ApiConsumes('multipart/form-data')
   @ApiBody({

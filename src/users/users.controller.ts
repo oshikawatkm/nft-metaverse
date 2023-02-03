@@ -4,7 +4,9 @@ import { User } from './user.entity';
 import { UsersService } from './users.service';
 import { ApiTags } from '@nestjs/swagger';
 import { LoginUserDto } from './dto/login-user.dto';
-import { EthersService } from '../ethers/ethers.service'
+import { EthersService } from '../ethers/ethers.service';
+import { AuthGuard } from '@nestjs/passport';
+
 
 @ApiTags('users')
 @Controller('users')
@@ -39,6 +41,7 @@ export class UsersController {
     }
   }
 
+  @UseGuards(AuthGuard('local'))
   @Post("login")
   login(@Body() loginUserDto: LoginUserDto) {
     this.usersService.login(loginUserDto);

@@ -6,6 +6,7 @@ import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { NftModel } from './nft_model.entity';
 import { FileInterceptor, MulterModule } from '@nestjs/platform-express';
 import { UsersService } from '../users/users.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('nft-models')
 @Controller('nft-models')
@@ -17,12 +18,14 @@ export class NftModelsController {
     private readonly ethersService: EthersService,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   @Version('1')
   findAll(): Promise<NftModel[]> {
     return this.nftModelsService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   @ApiConsumes('multipart/form-data')
   @ApiBody({
@@ -62,6 +65,7 @@ export class NftModelsController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<any> {
     let nftModel = await this.nftModelsService.findOne(id);

@@ -20,6 +20,7 @@ import { NftModel } from './nft_models/nft_model.entity';
 import { UsersModule } from './users/users.module';
 import { ModelsConvertersModule } from './model_converters/model_converters.module';
 import { OrdersModule } from './orders/orders.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { OrdersModule } from './orders/orders.module';
     ModelsConvertersModule,
     NftModelsModule,
     OrdersModule,
+    AuthModule,
   ],
   controllers: [
     AppController,

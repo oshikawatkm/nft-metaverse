@@ -35,6 +35,10 @@ export class UsersService {
         return this.usersRepository.findOneBy({ id });
       }
 
+      findByEmail(email: string): Promise<User> {
+        return this.usersRepository.findOneBy({ email });
+      }
+
       // PoCなので簡易的な認証
       async login(loginUserDto: LoginUserDto): Promise<Boolean> {
         let user: LoginUserDto = await this.usersRepository.findOneBy({ email: loginUserDto.email });
