@@ -6,6 +6,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { LoginUserDto } from './dto/login-user.dto';
 import { EthersService } from '../ethers/ethers.service';
 import { AuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from '../auth/guards/local-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 
 @ApiTags('users')
@@ -29,6 +31,7 @@ export class UsersController {
     this.usersService.create(createUserDto, pubKey, privateKey, address);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<any> {
     let user = await this.usersService.findOne(id);
@@ -41,9 +44,9 @@ export class UsersController {
     }
   }
 
-  @UseGuards(AuthGuard('local'))
   @Post("login")
   login(@Body() loginUserDto: LoginUserDto) {
+    console.log(loginUserDto)
     this.usersService.login(loginUserDto);
   }
 

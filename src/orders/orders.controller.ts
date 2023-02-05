@@ -8,7 +8,7 @@ import { ModelConvertersService } from '../model_converters/model_converters.ser
 import { UsersService } from '../users/users.service';
 import { EthersService } from '../ethers/ethers.service';
 import { NftModelsService } from 'src/nft_models/nft_models.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('orders')
 @Controller('orders')

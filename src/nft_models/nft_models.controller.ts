@@ -6,7 +6,7 @@ import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { NftModel } from './nft_model.entity';
 import { FileInterceptor, MulterModule } from '@nestjs/platform-express';
 import { UsersService } from '../users/users.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('nft-models')
 @Controller('nft-models')

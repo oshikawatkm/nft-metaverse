@@ -4,6 +4,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { ModelConverter } from './model_converter.entity';
 import { LoginModelConverterDto } from './dto/login-converter.dto';
 import { EthersService } from '../ethers/ethers.service'
+import { LocalAuthGuard } from '../auth/guards/local-auth.guard';
 
 @ApiTags('model_converters')
 @Controller('model_converters')
@@ -39,6 +40,7 @@ export class ModelConvertersController {
     }
   }
 
+  @UseGuards(LocalAuthGuard)
   @Post('login')
   login(@Body() loginModelConverterDto: LoginModelConverterDto): Promise<Boolean> {
     return this.modelConvertersService.login(loginModelConverterDto);

@@ -12,6 +12,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('nft-models')
     .addTag('users')
+    .addTag('auth')
     .addTag('model_converters')
     .build();
 
